@@ -62,7 +62,7 @@ $(document).ready(function(){
 		proxy: "resources/mock/data/authen/login.json"
 	});
 	$.mockjax({
-		url: serviceURL.mpm.timesheet.logout,	
+		url: serviceURL.authen.logout,	
   		dataType: "json",
   		contentType:"application/json",	
   		responseText: "{}"
