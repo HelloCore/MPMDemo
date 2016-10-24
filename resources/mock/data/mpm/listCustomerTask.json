@@ -1,0 +1,20 @@
+[
+	{
+		"name":"Customer Demo",
+		"listProject": [
+			{ "code":"PD01", "name":"Project Demo 1" },
+			{ "code":"PD02", "name":"Project Demo 2" },
+			{ "code":"PD03", "name":"Project Demo 3" },
+			{ "code":"PD04", "name":"Project Demo 4" }
+		]
+	},
+	{
+		"name":"CBank",
+		"listProject": [
+			{ "code":"CBANK01", "name":"CBank Demo 1" },
+			{ "code":"CBANK02", "name":"CBank Demo 2" },
+			{ "code":"CBANK03", "name":"CBank Demo 3" },
+			{ "code":"CBANK04", "name":"CBank Demo 4" }
+		]
+	}
+]
