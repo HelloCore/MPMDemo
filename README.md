@@ -1,3 +1,6 @@
+#MPMDemo
+https://hellocore.github.io/MPMDemo/
+
 Hello.
 
 This is my demo project.
@@ -10,6 +13,6 @@ You could simply duplicate an information by draging it at an icon on top-left p
 
 In addition, I developed a backend server that acted as a proxy server.
 It parsed every request from this application, connected to the real server of my employer, and then converted responsed data to JSON format for this application.
+https://github.com/HelloCore/MPMServiceDemo
 
 Thank You.
-https://hellocore.github.io/MPMDemo/
