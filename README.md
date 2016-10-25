@@ -1,7 +1,7 @@
 #MPMDemo
 https://hellocore.github.io/MPMDemo/
 
-Hello.
+Hello,
 
 This is my demo project.
 My previous employer had an internal website that every employee had to enter what they did in each day.
