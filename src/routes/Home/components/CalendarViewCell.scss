@@ -19,3 +19,9 @@
 .mpm-calendar-cell__container-today {
   background-color: #eaf6ff;
 }
+
+.mpm-calendar-cell__container-other-month {
+  .mpm-calendar-cell__title {
+    color: #ddd;
+  }
+}

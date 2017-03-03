@@ -27,7 +27,7 @@ $borderColor: #ccc;
       align-items: center;
 
       .btn {
-        margin-right: 5px;
+        margin-left: 5px;
       }
 
     }
@@ -43,7 +43,7 @@ $borderColor: #ccc;
     .calendar-view__calendar-header-row {
       .calendar-view__calendar-header-cell {
         text-align: center;
-        height: 35px;
+        height: 20px;
         justify-content: center;
         align-items: center;
         .calendar-view__calender-header-label {
