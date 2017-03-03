@@ -9,9 +9,15 @@ export const WEEK_DAY_WITHOUT_WEEKEND = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 
 class MPMCalendarCell extends Component {
   render() {
-    return (<td className='mpm-calendar-cell__container'>
-              <span className='mpm-calendar-cell__title'>{this.props.date.date()}</span>
-            </td>)
+    const dayMoment = this.props.dateObject.dayMoment;
+    const className = this.props.dateObject.isToday? 'mpm-calendar-cell__container-today' : ''
+
+    return (<div className={`mpm-calendar-cell__container ${className}`}>
+              <span className='mpm-calendar-cell__title'>{dayMoment.date()}</span>
+              <div className='mpm-calendar-cell__event-container'>
+
+              </div>
+            </div>)
   }
 }
 

@@ -29,6 +29,12 @@ export const initialCalendar = () => {
 
 export const changeCalendarMonth = (month) => {
   return (dispatch, getState) => {
+    var today = getState().MPMCalendarReducer.today;
+
+    if(today === undefined){
+      today = Moment();
+    }
+
     const startDate = Moment(month, 'M').date(26).subtract(1, 'months');
     const endDate = startDate.clone().add(1, 'month').subtract(1, 'seconds');
 
@@ -52,7 +58,12 @@ export const changeCalendarMonth = (month) => {
       const dateAtWeek = weekLoop * 7;
 
       for (dayLoop = 0; dayLoop < 7; dayLoop ++){
-        weekArray.push(calStartDate.clone().add((dateAtWeek + dayLoop), 'days'));
+        const dayMoment = calStartDate.clone().add((dateAtWeek + dayLoop), 'days');
+        //TODO: Check Holiday
+        weekArray.push({
+          dayMoment,
+          isToday: dayMoment.isSame(today, 'day'),
+        });
       }
 
       calDateList.push(weekArray);

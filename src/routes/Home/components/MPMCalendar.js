@@ -48,12 +48,13 @@ class MPMCalendar extends Component {
                 return (
                   <div className='mpm-calendar__calendar-body-row mpm-calendar__calendar-row' key={'weekId-' + weekIndex}>
                     {
-                      weekArray.filter((dayMoment) => {
-                        return this.state.isShowWeekend || (dayMoment.day() !== 0 && dayMoment.day() !== 6);
-                      }).map((dayMoment) => {
+                      weekArray.filter((obj, index) => {
+                        return this.state.isShowWeekend || (index !== 0 && index !== 6);
+                      }).map((obj) => {
+                        const dayMoment = obj.dayMoment;
                         return (
                           <div className='mpm-calendar__calendar-body-cell mpm-calendar__calendar-cell' key={dayMoment.format('DD-MM-YYYY')}>
-                            <MPMCalendarCell  date={dayMoment} />
+                            <MPMCalendarCell  dateObject={obj} />
                           </div>
                         )
                       })

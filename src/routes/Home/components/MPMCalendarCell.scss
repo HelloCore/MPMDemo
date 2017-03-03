@@ -1,7 +1,21 @@
 .mpm-calendar-cell__container {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
 
+
+  .mpm-calendar-cell__title {
+    min-height: 100px;
+    text-align: right;
+    padding-right: 5px;
+    color: #666;
+  }
+
+  .mpm-calendar-cell__event-container {
+
+  }
 }
 
-.mpm-calendar-cell__title {
-  height: 100px;
+.mpm-calendar-cell__container-today {
+  background-color: #eaf6ff;
 }
