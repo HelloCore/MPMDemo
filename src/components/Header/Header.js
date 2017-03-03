@@ -1,14 +1,12 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import AppBar from 'material-ui/AppBar';
 
 import './Header.scss'
 
 export const Header = () => (
-  <AppBar
-    style={{backgroundColor: '#333'}}
-    className="header__appBar"
-    title={<span className="header__title">MPM Demo</span>}/>
+  <nav className="navbar navbar-inverse navbar-static-top">
+    <a className="navbar-brand" href="#">MPM</a>
+  </nav>
 )
 
 export default Header

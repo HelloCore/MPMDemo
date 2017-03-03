@@ -8,7 +8,9 @@ export const CHANGE_CALENDAR_MONTH = 'CHANGE_CALENDAR_MONTH'
 // ------------------------------------
 // Actions
 // ------------------------------------
-
+const getDefaultMonth = () => {
+  return ((Moment().date() >= 25)? Moment().add(1, 'months').month(): Moment().month()) + 1;
+}
 
 /*  This is a thunk, meaning it is a function that immediately
     returns a function for lazy evaluation. It is incredibly useful for
@@ -16,7 +18,7 @@ export const CHANGE_CALENDAR_MONTH = 'CHANGE_CALENDAR_MONTH'
 export const initialCalendar = () => {
   return (dispatch, getState) => {
     const today = Moment();
-    const month = ((Moment().date() >= 25)? Moment().add(1, 'months').month(): Moment().month()) + 1;
+    const month = getDefaultMonth();
     dispatch({
       today,
       month,
@@ -24,6 +26,42 @@ export const initialCalendar = () => {
     })
 
     changeCalendarMonth(month)(dispatch, getState);
+  }
+}
+
+export const nextMonth = () => {
+  return (dispatch, getState) => {
+    var month = getState().calendar.month;
+    if(month === undefined){
+      month = getDefaultMonth();
+    }
+    month += 1;
+    if(month > 12){
+      month -= 12;
+    }
+
+    changeCalendarMonth(month)(dispatch, getState);
+  }
+}
+
+export const prevMonth = () => {
+  return (dispatch, getState) => {
+    var month = getState().calendar.month;
+    if(month === undefined){
+      month = getDefaultMonth();
+    }
+    month -= 1;
+    if(month < 1){
+      month += 12;
+    }
+
+    changeCalendarMonth(month)(dispatch, getState);
+  }
+}
+
+export const currentMonth = () => {
+  return (dispatch, getState) => {
+    changeCalendarMonth(getDefaultMonth())(dispatch, getState);
   }
 }
 
@@ -71,6 +109,7 @@ export const changeCalendarMonth = (month) => {
     }
 
     dispatch({
+      month,
       startDate,
       endDate,
       calDateList,
@@ -79,8 +118,14 @@ export const changeCalendarMonth = (month) => {
   }
 }
 
+
+
 export const actions = {
-  changeCalendarMonth
+  changeCalendarMonth,
+  initialCalendar,
+  nextMonth,
+  prevMonth,
+  currentMonth,
 }
 
 // ------------------------------------
@@ -93,12 +138,10 @@ const initialState = {
   startDate: null,
   endDate: null,
   calDateList : [],
-  calStartDate: null,
-  calEndDate: null,
 }
 
 
-export default function MPMCalendarReducer(state = initialState, action) {
+export default function calendar(state = initialState, action) {
   switch (action.type) {
     case INITIAL_CALENDAR:
       return {
@@ -109,6 +152,7 @@ export default function MPMCalendarReducer(state = initialState, action) {
     case CHANGE_CALENDAR_MONTH:
       return {
         ...state,
+        month: action.month,
         startDate: action.startDate,
         endDate: action.endDate,
         calDateList: action.calDateList,

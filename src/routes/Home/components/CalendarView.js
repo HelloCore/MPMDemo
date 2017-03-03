@@ -1,6 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { initialCalendar, changeCalendarMonth } from '../modules/CalendarReducer'
+
+import {
+  initialCalendar,
+  changeCalendarMonth,
+   nextMonth,
+   prevMonth,
+   currentMonth
+} from '../modules/CalendarReducer'
+
 import Moment from 'moment'
 import './CalendarView.scss'
 
@@ -22,7 +30,47 @@ class CalendarView extends Component {
       this.props.initialCalendar();
     }
 
-    _renderHeader() {
+    _renderHeaderContainer() {
+      const month = Moment( this.props.month ,'M');
+      const monthTitle = month.format('MMMM YYYY');
+      const isSameMonth = month.isSame(this.props.today ,'month');
+      const todayBtnActiveClass = isSameMonth? 'active' : ''
+
+      return (
+        <div className='calendar-view__header-container'>
+          <div className='calendar-view__header-left-container calendar-view__header-wrapper'>
+          </div>
+          <div className='calendar-view__header-middle-container calendar-view__header-wrapper'>
+            <h1>{monthTitle}</h1>
+          </div>
+          <div className='calendar-view__header-right-container calendar-view__header-wrapper'>
+            <button type="button" className="btn btn-default" onClick={() => { this.props.prevMonth(); }}>
+              <span className="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+            </button>
+            <button type="button" className={`btn btn-default ${todayBtnActiveClass}`} onClick={ isSameMonth? (()=>{}) : (() => { this.props.currentMonth(); }) }>Today</button>
+            <button type="button" className="btn btn-default" onClick={() => { this.props.nextMonth(); }}>
+              <span className="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    _renderFooterContainer() {
+      return (
+        <div className='calendar-view__footer-container'>
+          <button type="button" className="btn btn-primary" onClick={() => { this._onSaveButtonClick(); }}>
+            <span className="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+             Save
+          </button>
+          <button type="button" className="btn btn-default" onClick={() => { this._onSaveButtonClick(); }}>
+            Cancel
+          </button>
+        </div>
+      );
+    }
+
+    _renderCalendarHeader() {
       const headerData = this.state.isShowWeekend? WEEK_DAY_WITH_WEEKEND: WEEK_DAY_WITHOUT_WEEKEND
       return (
         <div className='calendar-view__calendar-header-row calendar-view__calendar-row'>
@@ -37,7 +85,7 @@ class CalendarView extends Component {
       );
     }
 
-    _renderBody() {
+    _renderCalendarBody() {
 
       if(this.props.calDateList === null || this.props.calDateList.length === 0){
         return null
@@ -66,13 +114,20 @@ class CalendarView extends Component {
     render () {
       let cellClassName = this.state.isShowWeekend? 'calendar-view__calendar-header-weekend-cell': 'calendar-view__calendar-header-no-weekend-cell'
       return (
-        <div className={`calendar-view__calendar-container ${cellClassName}`}>
-            { this._renderHeader() }
-            { this._renderBody() }
+        <div className='calendar-view__container'>
+          { this._renderHeaderContainer() }
+          <div className={`calendar-view__calendar-container ${cellClassName}`}>
+              { this._renderCalendarHeader() }
+              { this._renderCalendarBody() }
+          </div>
+          { this._renderFooterContainer() }
         </div>
       )
     }
 
+    _onSaveButtonClick() {
+
+    }
 }
 
 CalendarView.defaultProps = {
@@ -81,7 +136,10 @@ CalendarView.defaultProps = {
 
 const mapDispatchToProps = {
   changeCalendarMonth,
-  initialCalendar
+  initialCalendar,
+  nextMonth,
+  prevMonth,
+  currentMonth,
 }
 
 const mapStateToProps = (state) => {
