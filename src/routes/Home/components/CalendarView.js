@@ -4,7 +4,7 @@ import { initialCalendar, changeCalendarMonth } from '../modules/CalendarReducer
 import Moment from 'moment'
 import './CalendarView.scss'
 
-import MPMCalendarCell from './MPMCalendarCell'
+import CalendarViewCell from './CalendarViewCell'
 
 export const WEEK_DAY_WITH_WEEKEND = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 export const WEEK_DAY_WITHOUT_WEEKEND = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
@@ -53,7 +53,7 @@ class CalendarView extends Component {
                       }).map((obj) => {
                         return (
                           <div className='calendar-view__calendar-body-cell calendar-view__calendar-cell' key={obj.key}>
-                            <MPMCalendarCell  dateObject={obj} />
+                            <CalendarViewCell  dateObject={obj} />
                           </div>
                         )
                       })

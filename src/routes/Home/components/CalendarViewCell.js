@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Moment from 'moment'
-import './MPMCalendarCell.scss'
+import './CalendarViewCell.scss'
 
 export const WEEK_DAY_WITH_WEEKEND = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 export const WEEK_DAY_WITHOUT_WEEKEND = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 
 
-class MPMCalendarCell extends Component {
+class CalendarViewCell extends Component {
   render() {
     const dayMoment = this.props.dateObject.dayMoment;
     const className = this.props.dateObject.isToday? 'mpm-calendar-cell__container-today' : ''
@@ -21,7 +21,7 @@ class MPMCalendarCell extends Component {
   }
 }
 
-MPMCalendarCell.defaultProps = {
+CalendarViewCell.defaultProps = {
 
 }
 
@@ -36,4 +36,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MPMCalendarCell)
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarViewCell)
