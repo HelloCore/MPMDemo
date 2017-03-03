@@ -35,7 +35,8 @@ class MPMCalendar extends Component {
     }
 
     _renderBody() {
-
+      //TODO: Loop Calendar date
+      // calStartDate to calEndDate
       return
     }
 
