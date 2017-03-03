@@ -1,18 +1,33 @@
-.mpm-calendar__table-container {
-  width: 100%;
-}
-.mpm-calendar__table-container > thead > tr > th{
-  text-align: center;
+.mpm-calendar__basic_cell {
   border-color: #AAA;
   border-width: 1px;
   border-style: solid;
-  height: 35px;
 }
 
-.mpm-calendar__table-header-weekend > th {
-  width: (100%) / 7;
-}
+.mpm-calendar__table-container {
+  width: 100%;
 
-.mpm-calendar__table-header-no-weekend > th {
-  width: (100%) / 5;
+  thead {
+
+    tr {
+      th {
+        @extend .mpm-calendar__basic_cell;
+        text-align: center;
+        height: 35px;
+      }
+    }
+
+    tr.mpm-calendar__table-header-weekend > th {
+      width: (100%) / 7;
+    }
+
+    tr.mpm-calendar__table-header-no-weekend > th {
+      width: (100%) / 5;
+    }
+  }
+
+  tbody > tr > td {
+    @extend .mpm-calendar__basic_cell;
+    min-height: 50px;
+  }
 }

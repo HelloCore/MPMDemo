@@ -12,7 +12,7 @@ class MPMCalendar extends Component {
     constructor(props){
       super(props);
       this.state = {
-        isShowWeekend: false,
+        isShowWeekend: true,
       }
     }
 
@@ -35,9 +35,32 @@ class MPMCalendar extends Component {
     }
 
     _renderBody() {
-      //TODO: Loop Calendar date
-      // calStartDate to calEndDate
-      return
+
+      if(this.props.calDateList === null || this.props.calDateList.length === 0){
+        return null
+      }
+
+      return (
+          <tbody>
+            {
+              this.props.calDateList.map((weekArray, weekIndex) => {
+                return (
+                  <tr key={'weekId-' + weekIndex}>
+                    {
+                      weekArray.filter((dayMoment) => {
+                        return this.state.isShowWeekend || (dayMoment.day() !== 0 && dayMoment.day() !== 6);
+                      }).map((dayMoment) => {
+                        return (
+                          <td key={dayMoment.format('DD-MM-YYYY')}>{dayMoment.date()}</td>
+                        )
+                      })
+                    }
+                  </tr>
+                )
+              })
+            }
+        </tbody>
+      );
     }
 
     render () {
@@ -67,8 +90,7 @@ const mapStateToProps = (state) => {
     month : state.MPMCalendarReducer.month,
     startDate : state.MPMCalendarReducer.startDate,
     endDate : state.MPMCalendarReducer.endDate,
-    calStartDate : state.MPMCalendarReducer.calStartDate,
-    calEndDate : state.MPMCalendarReducer.calEndDate
+    calDateList: state.MPMCalendarReducer.calDateList,
   }
 }
 

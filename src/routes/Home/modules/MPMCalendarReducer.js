@@ -40,11 +40,28 @@ export const changeCalendarMonth = (month) => {
     while( calEndDate.day() != 6 ){
       calEndDate.add(1,'days');
     }
+
+    var calDateList = [];
+    var dayDiff = calEndDate.diff(calStartDate, 'days');
+    const numberOfWeeks = dayDiff / 7;
+
+    var weekLoop = 0;
+    var dayLoop = 0;
+    for(weekLoop = 0; weekLoop < numberOfWeeks; weekLoop++){
+      var weekArray = [];
+      const dateAtWeek = weekLoop * 7;
+
+      for (dayLoop = 0; dayLoop < 7; dayLoop ++){
+        weekArray.push(calStartDate.clone().add((dateAtWeek + dayLoop), 'days'));
+      }
+
+      calDateList.push(weekArray);
+    }
+
     dispatch({
       startDate,
       endDate,
-      calStartDate,
-      calEndDate,
+      calDateList,
       type: CHANGE_CALENDAR_MONTH,
     })
   }
@@ -63,6 +80,7 @@ const initialState = {
   month: null,
   startDate: null,
   endDate: null,
+  calDateList : [],
   calStartDate: null,
   calEndDate: null,
 }
@@ -81,8 +99,7 @@ export default function MPMCalendarReducer(state = initialState, action) {
         ...state,
         startDate: action.startDate,
         endDate: action.endDate,
-        calStartDate: action.calStartDate,
-        calEndDate: action.calEndDate,
+        calDateList: action.calDateList,
       }
     default:
   }
