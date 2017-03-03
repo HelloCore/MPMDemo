@@ -21,8 +21,8 @@ class CalendarViewCell extends Component {
   }
 }
 
-CalendarViewCell.defaultProps = {
-
+CalendarViewCell.propTypes = {
+  dateObject: React.PropTypes.object.isRequired
 }
 
 const mapDispatchToProps = {
@@ -30,9 +30,8 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return {
-
+    timesheetList: state.timesheet.timesheetList[ownProps.key]
   }
 }
 

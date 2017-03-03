@@ -36,8 +36,8 @@ export const actions = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  eventData: null,
-  customerData: null,
+  timesheetList: {},
+  customerData: [],
 
 }
 
