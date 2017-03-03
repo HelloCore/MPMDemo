@@ -2,7 +2,7 @@
 // Constants
 // ------------------------------------
 export const FETCH_TIMESHEET = 'FETCH_TIMESHEET'
-export const FFETCH_TIMESHEET_COMPLETED = 'FFETCH_TIMESHEET_COMPLETED'
+export const FETCH_TIMESHEET_COMPLETED = 'FFETCH_TIMESHEET_COMPLETED'
 
 export const SYNC_TIMESHEET = 'SYNC_TIMESHEET'
 export const SYNC_PROJECT = 'SYNC_PROJECT'
@@ -28,20 +28,6 @@ export const fetchTimesheet = () => {
   }
 }
 
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        dispatch({
-          type    : COUNTER_DOUBLE_ASYNC,
-          payload : getState().counter
-        })
-        resolve()
-      }, 200)
-    })
-  }
-}
-
 export const actions = {
   fetchTimesheet
 }
@@ -52,6 +38,7 @@ export const actions = {
 const initialState = {
   eventData: null,
   customerData: null,
+
 }
 
 export default function timesheetReducer (state = initialState, action) {
@@ -60,9 +47,9 @@ export default function timesheetReducer (state = initialState, action) {
 
       break;
     case FETCH_TIMESHEET_COMPLETED:
+
       break;
     default:
-
   }
 
   return state

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { fetchEvent } from '../../modules/home'
+import { initialCalendar, changeCalendarMonth } from '../modules/MPMCalendarReducer'
 import Moment from 'moment'
 import './MPMCalendar.scss'
 
@@ -16,34 +16,59 @@ class MPMCalendar extends Component {
       }
     }
 
+    componentWillMount() {
+      this.props.initialCalendar();
+    }
+
     _renderHeader() {
       const headerData = this.state.isShowWeekend? WEEK_DAY_WITH_WEEKEND: WEEK_DAY_WITHOUT_WEEKEND
       const className = this.state.isShowWeekend? 'mpm-calendar__table-header-weekend': 'mpm-calendar__table-header-no-weekend'
       return (
-        <tr className={className}>
-          {headerData.map((day) => {
-            return <th key={day}>{day}</th>
-          })}
-        </tr>
+        <thead>
+          <tr className={className}>
+            {headerData.map((day) => {
+              return <th key={day}>{day}</th>
+            })}
+          </tr>
+        </thead>
       );
+    }
+
+    _renderBody() {
+
+      return
     }
 
     render () {
       return (
         <table className='mpm-calendar__table-container'>
-          <thead>
             { this._renderHeader() }
-          </thead>
+            { this._renderBody() }
         </table>
       )
     }
 
 }
 
-const mapDispatchToProps = {
-  fetchEvent
+MPMCalendar.defaultProps = {
+
 }
-const mapStateToProps = (state) => ({
-  eventData : state.eventData
-})
+
+const mapDispatchToProps = {
+  changeCalendarMonth,
+  initialCalendar
+}
+
+const mapStateToProps = (state) => {
+  return {
+    eventData : state.home.eventData,
+    today : state.MPMCalendarReducer.today,
+    month : state.MPMCalendarReducer.month,
+    startDate : state.MPMCalendarReducer.startDate,
+    endDate : state.MPMCalendarReducer.endDate,
+    calStartDate : state.MPMCalendarReducer.calStartDate,
+    calEndDate : state.MPMCalendarReducer.calEndDate
+  }
+}
+
 export default connect(mapStateToProps, mapDispatchToProps)(MPMCalendar)

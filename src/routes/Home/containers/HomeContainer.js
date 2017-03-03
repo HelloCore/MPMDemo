@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import MPMCalendar from './MPMCalendar'
-import './HomeView.scss'
+import MPMCalendar from '../components/MPMCalendar'
 
-class HomeView extends Component {
+class HomeContainer extends Component {
 
   render() {
     return (
@@ -22,4 +21,4 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
