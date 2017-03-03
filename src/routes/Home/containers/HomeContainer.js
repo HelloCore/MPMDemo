@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import MPMCalendar from '../components/MPMCalendar'
+import CalendarView from '../components/CalendarView'
 
 class HomeContainer extends Component {
 
   render() {
     return (
       <div>
-        <MPMCalendar />
+        <CalendarView />
       </div>
     )
   }

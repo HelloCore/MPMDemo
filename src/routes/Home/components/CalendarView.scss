@@ -1,41 +1,41 @@
 $borderColor: #ccc;
 
-.mpm-calendar__calendar-container {
+.calendar-view__calendar-container {
   border: 1px solid $borderColor;
   width: 100%;
   flex-direction: column;
   flex: 1 0 0;
   display: flex;
 
-  .mpm-calendar__calendar-header-row {
-    .mpm-calendar__calendar-header-cell {
+  .calendar-view__calendar-header-row {
+    .calendar-view__calendar-header-cell {
       text-align: center;
       height: 35px;
       justify-content: center;
       align-items: center;
-      .mpm-calendar__calender-header-label {
+      .calendar-view__calender-header-label {
 
       }
     }
   }
 
-  .mpm-calendar__calendar-row + .mpm-calendar__calendar-row  {
+  .calendar-view__calendar-row + .calendar-view__calendar-row  {
     border-top: 1px solid $borderColor;
   }
 
-  .mpm-calendar__calendar-row {
+  .calendar-view__calendar-row {
     display: flex;
     width: 100%;
     padding: 0px;
     margin: 0px;
     flex-direction: row;
 
-    .mpm-calendar__calendar-cell {
+    .calendar-view__calendar-cell {
       display: flex;
       padding: 0px;
       margin: 0px;
     }
-    .mpm-calendar__calendar-cell + .mpm-calendar__calendar-cell {
+    .calendar-view__calendar-cell + .calendar-view__calendar-cell {
       border-left: 1px solid $borderColor;
     }
   }
@@ -44,13 +44,13 @@ $borderColor: #ccc;
 
 }
 
-.mpm-calendar__calendar-header-weekend-cell {
-  .mpm-calendar__calendar-cell {
+.calendar-view__calendar-header-weekend-cell {
+  .calendar-view__calendar-cell {
     width: (100%) / 7;
   }
 }
-.mpm-calendar__calendar-header-no-weekend-cell {
-  .mpm-calendar__calendar-cell {
+.calendar-view__calendar-header-no-weekend-cell {
+  .calendar-view__calendar-cell {
     width: (100%) / 5;
   }
 }

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { initialCalendar, changeCalendarMonth } from '../modules/MPMCalendarReducer'
+import { initialCalendar, changeCalendarMonth } from '../modules/CalendarReducer'
 import Moment from 'moment'
-import './MPMCalendar.scss'
+import './CalendarView.scss'
 
 import MPMCalendarCell from './MPMCalendarCell'
 
@@ -10,7 +10,7 @@ export const WEEK_DAY_WITH_WEEKEND = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 
 export const WEEK_DAY_WITHOUT_WEEKEND = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 
 
-class MPMCalendar extends Component {
+class CalendarView extends Component {
     constructor(props){
       super(props);
       this.state = {
@@ -25,11 +25,11 @@ class MPMCalendar extends Component {
     _renderHeader() {
       const headerData = this.state.isShowWeekend? WEEK_DAY_WITH_WEEKEND: WEEK_DAY_WITHOUT_WEEKEND
       return (
-        <div className='mpm-calendar__calendar-header-row mpm-calendar__calendar-row'>
+        <div className='calendar-view__calendar-header-row calendar-view__calendar-row'>
           {headerData.map((day) => {
             return (
-              <div className={'mpm-calendar__calendar-header-cell mpm-calendar__calendar-cell'} key={day}>
-                <span className='mpm-calendar__calender-header-label'>{day}</span>
+              <div className={'calendar-view__calendar-header-cell calendar-view__calendar-cell'} key={day}>
+                <span className='calendar-view__calender-header-label'>{day}</span>
               </div>
             )
           })}
@@ -46,14 +46,13 @@ class MPMCalendar extends Component {
 
       return this.props.calDateList.map((weekArray, weekIndex) => {
                 return (
-                  <div className='mpm-calendar__calendar-body-row mpm-calendar__calendar-row' key={'weekId-' + weekIndex}>
+                  <div className='calendar-view__calendar-body-row calendar-view__calendar-row' key={'weekId-' + weekIndex}>
                     {
                       weekArray.filter((obj, index) => {
                         return this.state.isShowWeekend || (index !== 0 && index !== 6);
                       }).map((obj) => {
-                        const dayMoment = obj.dayMoment;
                         return (
-                          <div className='mpm-calendar__calendar-body-cell mpm-calendar__calendar-cell' key={dayMoment.format('DD-MM-YYYY')}>
+                          <div className='calendar-view__calendar-body-cell calendar-view__calendar-cell' key={obj.key}>
                             <MPMCalendarCell  dateObject={obj} />
                           </div>
                         )
@@ -65,9 +64,9 @@ class MPMCalendar extends Component {
     }
 
     render () {
-      let cellClassName = this.state.isShowWeekend? 'mpm-calendar__calendar-header-weekend-cell': 'mpm-calendar__calendar-header-no-weekend-cell'
+      let cellClassName = this.state.isShowWeekend? 'calendar-view__calendar-header-weekend-cell': 'calendar-view__calendar-header-no-weekend-cell'
       return (
-        <div className={`mpm-calendar__calendar-container ${cellClassName}`}>
+        <div className={`calendar-view__calendar-container ${cellClassName}`}>
             { this._renderHeader() }
             { this._renderBody() }
         </div>
@@ -76,7 +75,7 @@ class MPMCalendar extends Component {
 
 }
 
-MPMCalendar.defaultProps = {
+CalendarView.defaultProps = {
 
 }
 
@@ -87,13 +86,13 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    eventData : state.home.eventData,
-    today : state.MPMCalendarReducer.today,
-    month : state.MPMCalendarReducer.month,
-    startDate : state.MPMCalendarReducer.startDate,
-    endDate : state.MPMCalendarReducer.endDate,
-    calDateList: state.MPMCalendarReducer.calDateList,
+    eventData : state.timesheet.eventData,
+    today : state.calendar.today,
+    month : state.calendar.month,
+    startDate : state.calendar.startDate,
+    endDate : state.calendar.endDate,
+    calDateList: state.calendar.calDateList,
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MPMCalendar)
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarView)

@@ -29,7 +29,7 @@ export const initialCalendar = () => {
 
 export const changeCalendarMonth = (month) => {
   return (dispatch, getState) => {
-    var today = getState().MPMCalendarReducer.today;
+    var today = getState().calendar.today;
 
     if(today === undefined){
       today = Moment();
@@ -62,6 +62,7 @@ export const changeCalendarMonth = (month) => {
         //TODO: Check Holiday
         weekArray.push({
           dayMoment,
+          key: dayMoment.format('DD-MM-YYYY'),
           isToday: dayMoment.isSame(today, 'day'),
         });
       }
