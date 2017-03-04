@@ -33,7 +33,7 @@ class CalendarView extends Component {
     }
 
     _renderHeaderContainer() {
-      if(this.props.month === undefined){
+      if(this.props.month === undefined || typeof(this.props.month) === 'string'){
         return <div></div>
       }
       const monthTitle = this.props.month.format('MMMM YYYY');

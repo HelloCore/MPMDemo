@@ -10,6 +10,10 @@ export const WEEK_DAY_WITHOUT_WEEKEND = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 class CalendarViewCell extends Component {
   render() {
     const dayMoment = this.props.dateObject.dayMoment;
+    if(typeof(dayMoment) === 'string'){
+      return <div></div>
+    }
+
     const todayClass = this.props.dateObject.isToday? 'mpm-calendar-cell__container-today' : ''
     const otherMonthClass = this.props.dateObject.isOtherMonth? 'mpm-calendar-cell__container-other-month' : ''
 

@@ -1,8 +1,11 @@
+import {REHYDRATE} from 'redux-persist/constants'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const LOGIN = 'LOGIN'
-export const LOGIN_COMPLETED = 'LOGIN_COMPLETED'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
 
 export const LOGOUT = 'LOGOUT'
 
@@ -14,15 +17,25 @@ export const LOGOUT = 'LOGOUT'
 /*  This is a thunk, meaning it is a function that immediately
     returns a function for lazy evaluation. It is incredibly useful for
     creating async actions, especially when combined with redux-thunk! */
-export const login = () => {
+export const login = (credential) => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
       dispatch({
         type: LOGIN
       })
       //TODO: Login
+      //credential.username
+      //credential.password
 
-      resolve();
+      setTimeout(() => {
+        dispatch({
+          type    : LOGIN_FAILED,
+          payload : {
+            message: 'ERROR'
+          }
+        })
+        resolve()
+      }, 1000)
     })
   }
 }
@@ -39,14 +52,30 @@ const initialState = {
   isLoading: false,
 }
 
-export default function userReducer (state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-
-      break;
+      return {
+        ...state,
+        isLoading: true,
+      }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      }
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+      }
     case LOGOUT:
-
       break;
+
+    case REHYDRATE:
+      return {
+        userData: state.userData,
+      }
 
     default:
   }

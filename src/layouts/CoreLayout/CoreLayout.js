@@ -19,7 +19,7 @@ class CoreLayout extends Component {
         {this.props.isLoading &&
           <div className='core-layout__global-loading-container'>
             <div className='core-layout__global-loading'>
-              <Spinner spinnerName="three-bounce" />
+              <Spinner spinnerName="three-bounce" noFadeIn/>
             </div>
           </div>
         }

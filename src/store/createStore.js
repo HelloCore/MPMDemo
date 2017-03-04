@@ -33,12 +33,16 @@ export default (initialState = {}) => {
   const store = createStore(
     makeRootReducer(),
     initialState,
-    composeEnhancers(
-      applyMiddleware(...middleware),
-      autoRehydrate(),
-      ...enhancers
+    compose(
+      composeEnhancers(
+        applyMiddleware(...middleware),
+        ...enhancers
+      ),
+      autoRehydrate()
     )
   )
+
+
   store.asyncReducers = {}
 
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
@@ -50,8 +54,6 @@ export default (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
-  
-  persistStore(store, { blacklist: ['calendar','timesheet']})
 
   return store
 }

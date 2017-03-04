@@ -5,13 +5,6 @@ export default (store) => ({
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
       const HomeContainer = require('./containers/HomeContainer').default
-      const CalendarReducer = require('./modules/CalendarReducer').default
-      const TimesheetReducer = require('./modules/TimesheetReducer').default
-      const UserReducer = require('./modules/UserReducer').default
-
-      injectReducer(store, { key: 'calendar', reducer: CalendarReducer})
-      injectReducer(store, { key: 'timesheet', reducer: TimesheetReducer})
-      injectReducer(store, { key: 'user', reducer: UserReducer})
 
       cb(null, HomeContainer)
 

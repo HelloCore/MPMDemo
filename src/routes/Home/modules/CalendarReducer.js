@@ -1,3 +1,4 @@
+import {REHYDRATE} from 'redux-persist/constants'
 import Moment from 'moment'
 // ------------------------------------
 // Constants
@@ -149,7 +150,7 @@ const initialState = {
 }
 
 
-export default function calendar(state = initialState, action) {
+export default function calendarReducer(state = initialState, action) {
   switch (action.type) {
     case INITIAL_CALENDAR:
       return {
