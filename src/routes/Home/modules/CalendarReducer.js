@@ -103,8 +103,7 @@ export const changeCalendarMonth = (month) => {
       for (dayLoop = 0; dayLoop < 7; dayLoop ++){
         const dayMoment = calStartDate.clone().add((dateAtWeek + dayLoop), 'days');
         const dayMomentDate = dayMoment.date()
-
-        const isOtherMonth = (weekLoop == 0 && dayMomentDate < 26 && dayMomentDate > 10) || (((weekLoop + 1) == numberOfWeeks ) && dayMomentDate > 25)
+        const isOtherMonth = (weekLoop == 0 && dayMomentDate < 26 && dayMomentDate > 10) || (((weekLoop + 1) == numberOfWeeks ) && (dayMomentDate > 25 || dayMomentDate < 10))
         //TODO: Check Holiday
         weekArray.push({
           dayMoment,

@@ -4,6 +4,9 @@ import { browserHistory } from 'react-router'
 import makeRootReducer from './reducers'
 import { updateLocation } from './location'
 
+import {persistStore, autoRehydrate} from 'redux-persist'
+
+
 export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
@@ -32,6 +35,7 @@ export default (initialState = {}) => {
     initialState,
     composeEnhancers(
       applyMiddleware(...middleware),
+      autoRehydrate(),
       ...enhancers
     )
   )
@@ -46,6 +50,8 @@ export default (initialState = {}) => {
       store.replaceReducer(reducers(store.asyncReducers))
     })
   }
+  
+  persistStore(store, { blacklist: ['calendar','timesheet']})
 
   return store
 }
