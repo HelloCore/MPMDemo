@@ -5,6 +5,8 @@ import { Modal, Button } from 'react-bootstrap'
 
 import { login } from '../modules/UserReducer'
 
+import './HomeContainer.scss'
+
 class HomeContainer extends Component {
   constructor(props){
     super(props);
@@ -49,49 +51,52 @@ class HomeContainer extends Component {
 
     return (
       <div>
-        <CalendarView />
-        {!this.props.isLoggedIn &&
-          <Modal show={!this.props.isLoggedIn}>
-            <Modal.Header>
-              <Modal.Title>Log In</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <div className={'form-group'+(hasUsernameError? ' has-error' :'') }>
-                <label className='control-label'>Username</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="usernameTextField"
-                  placeholder="Username"
-                  value={this.state.username}
-                  onChange={(e)=>{
-                    this.setState({
-                      username: e.target.value,
-                      hasUsernameError: false,
-                    })
-                 }} />
-              </div>
-              <div className={'form-group' +(hasPasswordError? ' has-error' :'') }>
-                <label className='control-label'>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  id="passwordTextField"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={(e)=>{
-                    this.setState({
-                      password: e.target.value,
-                      hasPasswordError: false,
-                    })
-                }} />
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button bsStyle='primary' onClick={() => { this._onRequestLogin() }}>Login</Button>
-            </Modal.Footer>
-          </Modal>
-        }
+        <div className='home-container__left-panel'>
+
+        </div>
+        <div className='home-container__left-panel'>
+          <CalendarView />
+        </div>
+        <Modal show={this.props.isLoggedIn}>
+          <Modal.Header>
+            <Modal.Title>Log In</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className={'form-group'+(hasUsernameError? ' has-error' :'') }>
+              <label className='control-label'>Username</label>
+              <input
+                type="text"
+                className="form-control"
+                id="usernameTextField"
+                placeholder="Username"
+                value={this.state.username}
+                onChange={(e)=>{
+                  this.setState({
+                    username: e.target.value,
+                    hasUsernameError: false,
+                  })
+               }} />
+            </div>
+            <div className={'form-group' +(hasPasswordError? ' has-error' :'') }>
+              <label className='control-label'>Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="passwordTextField"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={(e)=>{
+                  this.setState({
+                    password: e.target.value,
+                    hasPasswordError: false,
+                  })
+              }} />
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button bsStyle='primary' onClick={() => { this._onRequestLogin() }}>Login</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     )
   }

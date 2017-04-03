@@ -5,12 +5,15 @@ import { Button, Dropdown, DropdownButton, Glyphicon, MenuItem } from 'react-boo
 import Moment from 'moment'
 
 import {
-  initialCalendar,
   changeCalendarMonth,
-   nextMonth,
-   prevMonth,
-   currentMonth
+  nextMonth,
+  prevMonth,
+  currentMonth,
 } from '../modules/CalendarReducer'
+
+import {
+  toggleWeekend,
+} from '../modules/CalendarConfigReducer'
 
 import './CalendarView.scss'
 
@@ -23,13 +26,10 @@ export const WEEK_DAY_WITHOUT_WEEKEND = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
 class CalendarView extends Component {
     constructor(props){
       super(props);
-      this.state = {
-        isShowWeekend: true,
-      }
     }
 
     componentWillMount() {
-      this.props.initialCalendar();
+
     }
 
     _renderHeaderContainer() {
@@ -60,11 +60,9 @@ class CalendarView extends Component {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <MenuItem eventKey='1' onClick={() => {
-                    this.setState({
-                      isShowWeekend: !this.state.isShowWeekend,
-                    });
+                    this.props.toggleWeekend();
                   }}>
-                  <Glyphicon glyph={this.state.isShowWeekend? 'check' : 'unchecked'} />
+                  <Glyphicon glyph={this.props.isShowWeekEnd? 'check' : 'unchecked'} />
                   &nbsp;Show Weekend
                 </MenuItem>
               </Dropdown.Menu>
@@ -89,7 +87,7 @@ class CalendarView extends Component {
     }
 
     _renderCalendarHeader() {
-      const headerData = this.state.isShowWeekend? WEEK_DAY_WITH_WEEKEND: WEEK_DAY_WITHOUT_WEEKEND
+      const headerData = this.props.isShowWeekEnd? WEEK_DAY_WITH_WEEKEND: WEEK_DAY_WITHOUT_WEEKEND
       return (
         <div className='calendar-view__calendar-header-row calendar-view__calendar-row'>
           {headerData.map((day) => {
@@ -105,7 +103,7 @@ class CalendarView extends Component {
 
     _renderCalendarBody() {
 
-      if(this.props.calDateList === null || this.props.calDateList.length === 0){
+      if(this.props.calDateList === undefined || this.props.calDateList.length === 0){
         return null
       }
 
@@ -115,7 +113,7 @@ class CalendarView extends Component {
                   <div className='calendar-view__calendar-body-row calendar-view__calendar-row' key={'weekId-' + weekIndex}>
                     {
                       weekArray.filter((obj, index) => {
-                        return this.state.isShowWeekend || (index !== 0 && index !== 6);
+                        return this.props.isShowWeekEnd || (index !== 0 && index !== 6);
                       }).map((obj) => {
                         return (
                           <div className='calendar-view__calendar-body-cell calendar-view__calendar-cell' key={obj.key}>
@@ -130,7 +128,7 @@ class CalendarView extends Component {
     }
 
     render () {
-      let cellClassName = this.state.isShowWeekend? 'calendar-view__calendar-header-weekend-cell': 'calendar-view__calendar-header-no-weekend-cell'
+      let cellClassName = this.props.isShowWeekEnd? 'calendar-view__calendar-header-weekend-cell': 'calendar-view__calendar-header-no-weekend-cell'
       return (
         <div className='calendar-view__container'>
           { this._renderHeaderContainer() }
@@ -154,10 +152,10 @@ CalendarView.defaultProps = {
 
 const mapDispatchToProps = {
   changeCalendarMonth,
-  initialCalendar,
   nextMonth,
   prevMonth,
   currentMonth,
+  toggleWeekend,
 }
 
 const mapStateToProps = (state) => {
@@ -165,9 +163,8 @@ const mapStateToProps = (state) => {
     eventData : state.timesheet.eventData,
     today : state.calendar.today,
     month : state.calendar.month,
-    startDate : state.calendar.startDate,
-    endDate : state.calendar.endDate,
     calDateList: state.calendar.calDateList,
+    isShowWeekEnd: state.calendarConfig.isShowWeekEnd,
   }
 }
 

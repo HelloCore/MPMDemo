@@ -33,14 +33,17 @@ export default (initialState = {}) => {
   const store = createStore(
     makeRootReducer(),
     initialState,
-    compose(
+    compose(      
+      autoRehydrate(),
       composeEnhancers(
         applyMiddleware(...middleware),
         ...enhancers
-      ),
-      autoRehydrate()
+      )
     )
   )
+
+
+  // persistStore(store, { whitelist: ['user','calendarConfig']});
 
 
   store.asyncReducers = {}

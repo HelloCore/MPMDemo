@@ -4,9 +4,9 @@
 export const FETCH_TIMESHEET = 'FETCH_TIMESHEET'
 export const FETCH_TIMESHEET_COMPLETED = 'FFETCH_TIMESHEET_COMPLETED'
 
+
 export const SYNC_TIMESHEET = 'SYNC_TIMESHEET'
 export const SYNC_PROJECT = 'SYNC_PROJECT'
-
 
 
 // ------------------------------------

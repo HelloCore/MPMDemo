@@ -23,14 +23,15 @@ class AppContainer extends Component {
   }
 
   componentWillMount(){
-    persistStore(this.props.store, { whitelist: ['user']}, () => {
+    persistStore(this.props.store, { whitelist: ['user','calendarConfig']}, () => {
       this.setState({ rehydrated: true })
     })
+    // .purge()
   }
 
   render () {
     const { routes, store } = this.props
-    if(!this.state.rehydrated){
+    if(this.state.rehydrated === false){
       return <div></div>
     }
     return (
