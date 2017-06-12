@@ -1,4 +1,5 @@
 // @flow
+
 export const PREV_MONTH: string = 'CALENDAR_PREV_MONTH';
 export const NEXT_MONTH: string = 'CALENDAR_NEXT_MONTH';
 
