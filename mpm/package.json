@@ -1,0 +1,30 @@
+{
+  "name": "mpm",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3",
+    "moment": "^2.18.1",
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.15.3",
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.47.0",
+    "prettier": "^1.4.4",
+    "react-scripts": "1.0.7",
+    "redux-devtools": "^3.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "flow": "flow"
+  }
+}

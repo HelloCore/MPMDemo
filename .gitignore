@@ -1,25 +1,4 @@
-# Eclipse
-.classpath
-.project
-.settings/
- 
-# Intellij
-.idea/
-*.iml
-*.iws
- 
+
 # Mac
 .DS_Store
  
-# Maven
-log/
-target/
-
-# WebPack
-.DS_Store
-*.orig
-*.log
-node_modules/
-dist/
-bower_components/
-*.sublime-workspace
