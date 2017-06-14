@@ -4,9 +4,11 @@ import { createSelector } from 'reselect';
 import Moment from 'moment';
 
 import type { AppState } from '../../reducers';
+import type { CalendarViewCellOwnProps } from './CalendarViewCell';
+import type { TimesheetObject } from '../../reducers/timesheet';
 
 export type CalendarDay = {
-  dayMoment: moment$Moment,
+  dayMoment: Moment,
   isOtherMonth: boolean,
   key: string,
   isToday: boolean
@@ -62,5 +64,43 @@ export const dateInMonthSelector = createSelector(
     }
 
     return calDateList;
+  }
+);
+
+const clientTimesheetSelector = (
+  state: AppState,
+  props: CalendarViewCellOwnProps
+): Array<TimesheetObject> => {
+  let clientTimesheet =
+    state.timesheet.clientTimesheet[props.date.dayMoment.format('DD-MM-YYYY')];
+  if (clientTimesheet !== undefined) {
+    return clientTimesheet;
+  } else {
+    return [];
+  }
+};
+
+const serverTimesheetSelector = (
+  state: AppState,
+  props: CalendarViewCellOwnProps
+): Array<TimesheetObject> => {
+  let serverTimesheet =
+    state.timesheet.serverTimesheet[props.date.dayMoment.format('DD-MM-YYYY')];
+  if (serverTimesheet !== undefined) {
+    return serverTimesheet;
+  } else {
+    return [];
+  }
+};
+
+export const timesheetSelector = createSelector(
+  [clientTimesheetSelector, serverTimesheetSelector],
+  (clientTimesheet, serverTimesheet) => {
+    let client = clientTimesheet.slice(0);
+    let server = serverTimesheet.slice(0);
+
+    return [...client, ...server].sort((a, b) => {
+      return a.start.valueOf() - b.start.valueOf();
+    });
   }
 );
