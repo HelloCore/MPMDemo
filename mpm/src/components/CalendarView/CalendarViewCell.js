@@ -8,6 +8,19 @@ export type CalcendarViewCellProps = {
 };
 
 class CalendarViewCell extends Component<void, CalcendarViewCellProps, void> {
+  renderDay(date: CalendarDay) {
+    return (
+      <span
+        className={
+          'mpm-calendar-cell__title ' +
+          (date.isToday ? 'mpm-calendar-cell__title-today' : '')
+        }
+      >
+        {date.dayMoment.date()}
+      </span>
+    );
+  }
+
   render() {
     const { date } = this.props;
 
@@ -20,9 +33,7 @@ class CalendarViewCell extends Component<void, CalcendarViewCellProps, void> {
       <div
         className={`mpm-calendar-cell__container ${todayClass} ${otherMonthClass}`}
       >
-        <span className="mpm-calendar-cell__title">
-          {date.dayMoment.date()}
-        </span>
+        {this.renderDay(date)}
         {!date.isOtherMonth &&
           <div className="mpm-calendar-cell__event-container" />}
       </div>

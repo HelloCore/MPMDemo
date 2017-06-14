@@ -16,8 +16,11 @@ class TemplateView extends Component<void, TemplateProps, void> {
       <div className="template-view__container-view">
         <h4>Templates</h4>
         <div className="template-view__cell-container">
-          <TemplateCell />
-          <TemplateCell />
+          <TemplateCell className="label-warning" />
+          <TemplateCell className="label-warning" />
+          <TemplateCell className="label-warning" />
+          <TemplateCell className="label-warning" />
+          <TemplateCell className="label-warning" />
         </div>
       </div>
     );

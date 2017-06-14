@@ -5,6 +5,7 @@
   border-left-width: 5px;
   border-radius: 3px;
   position: relative;
+  cursor: grab;
 }
 
 .template-cell__time-badge {
@@ -20,10 +21,11 @@
   border-radius: 0.25rem;
   background-color: #337AB7;
 }
+
 .template-cell__delete-btn {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 6px;
+  right: 6px;
   z-index: 10;
   display: block;
   padding: 5px 8px;
@@ -34,4 +36,11 @@
   /*background-color: #fff;*/
   /*border: 1px solid #e1e1e8;*/
   border-radius: 0 4px 0 4px;
+}
+
+.template-cell__icon-close {
+  color: #AAA;
+}
+.template-cell__icon-close:hover {
+  color: #666;
 }

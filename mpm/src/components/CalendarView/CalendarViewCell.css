@@ -2,19 +2,24 @@
   display: flex;
   flex: 1 0 0;
   flex-direction: column;
+  min-height: 100px;
 }
 
 .mpm-calendar-cell__title {
-  min-height: 100px;
   text-align: right;
   padding-right: 5px;
   color: #666;
 }
 
 .mpm-calendar-cell__container-today {
-  background-color: #eaf6ff;
+  background-color: #EEF8FE;
 }
 
 .mpm-calendar-cell__container-other-month > .mpm-calendar-cell__title {
   color: #ddd;
+}
+
+.mpm-calendar-cell__title.mpm-calendar-cell__title-today {
+  color: #333;
+  font-weight: bold;
 }
