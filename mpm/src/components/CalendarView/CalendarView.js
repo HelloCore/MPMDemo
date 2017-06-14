@@ -6,7 +6,7 @@ import './CalendarView.css';
 import CalendarViewCell from './CalendarViewCell';
 import { dateInMonthSelector } from './CalendarSelector';
 
-import { nextMonth, prevMonth } from '../../actions/calendar';
+import { nextMonth, prevMonth, currentMonth } from '../../actions/calendar';
 
 import Moment from 'moment';
 
@@ -48,7 +48,6 @@ class CalendarView extends Component<void, CalendarViewProps, void> {
     }
     const monthTitle = this.props.month.format('MMMM YYYY');
     const isSameMonth = this.props.month.isSame(this.props.today, 'month');
-
     return (
       <div className="calendar-view__header-container">
         <div className="calendar-view__header-left-container calendar-view__header-wrapper" />
@@ -65,13 +64,11 @@ class CalendarView extends Component<void, CalendarViewProps, void> {
           </Button>
           <Button
             active={isSameMonth}
-            onClick={
-              isSameMonth
-                ? () => {}
-                : () => {
-                    // this.props.dispatch(currentMonth());
-                  }
-            }
+            onClick={() => {
+              if (isSameMonth === false) {
+                this.props.dispatch(currentMonth());
+              }
+            }}
           >
             Today
           </Button>

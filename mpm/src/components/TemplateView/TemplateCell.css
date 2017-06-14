@@ -1,0 +1,37 @@
+.template-cell__container {
+  padding: 7.5px 15px;
+  margin: 10px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+  position: relative;
+}
+
+.template-cell__time-badge {
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: white;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  background-color: #337AB7;
+}
+.template-cell__delete-btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 10;
+  display: block;
+  padding: 5px 8px;
+  font-size: 14px;
+  font-weight: lighter;
+  color: #767676;
+  cursor: pointer;
+  /*background-color: #fff;*/
+  /*border: 1px solid #e1e1e8;*/
+  border-radius: 0 4px 0 4px;
+}

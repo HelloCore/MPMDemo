@@ -1,6 +1,6 @@
 // @flow
 import Moment from 'moment';
-import { PREV_MONTH, NEXT_MONTH } from '../actions/calendar';
+import { PREV_MONTH, NEXT_MONTH, CURRENT_MONTH } from '../actions/calendar';
 import type { CalendarAction } from '../actions/calendar';
 
 export type CalendarState = {
@@ -28,6 +28,11 @@ export default function calendarReducer(
       return {
         ...state,
         month: state.month.clone().add(1, 'month')
+      };
+    case CURRENT_MONTH:
+      return {
+        ...state,
+        month: state.today.clone().date(1).hours(0).minutes(0).seconds(0)
       };
     default:
       break;
