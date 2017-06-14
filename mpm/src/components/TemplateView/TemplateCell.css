@@ -8,6 +8,16 @@
   cursor: grab;
 }
 
+.template-cell__header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.template-cell__header-container-left {
+  width: 80%;
+}
+
 .template-cell__time-badge {
   display: inline-block;
   padding: 0.25em 0.4em;

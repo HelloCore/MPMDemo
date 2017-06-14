@@ -14,7 +14,11 @@ class TemplateView extends Component<void, TemplateProps, void> {
   render() {
     return (
       <div className="template-view__container-view">
-        <h4>Templates</h4>
+        <h3>Templates</h3>
+        <button className="btn btn-warning btn-block">
+          Add
+        </button>
+        <hr />
         <div className="template-view__cell-container">
           <TemplateCell className="label-warning" />
           <TemplateCell className="label-warning" />
