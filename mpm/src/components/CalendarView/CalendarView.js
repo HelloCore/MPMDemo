@@ -63,6 +63,7 @@ class CalendarView extends Component<void, CalendarViewProps, void> {
             <Glyphicon glyph="menu-left" />
           </Button>
           <Button
+            className="calendar-view__today-button"
             active={isSameMonth}
             onClick={() => {
               if (isSameMonth === false) {
