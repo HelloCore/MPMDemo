@@ -54,3 +54,8 @@
 .template-cell__icon-close:hover {
   color: #666;
 }
+
+.timesheet-cell__card-container-temp {
+  opacity: 0.4;
+  cursor: grab;
+}

@@ -15,6 +15,29 @@ export type TimesheetCellProps = TimesheetCellOwnProps &
   TimesheetCellStateProps;
 
 class TimesheetCell extends Component<void, TimesheetCellProps, void> {
+  renderFooter() {
+    if (this.props.timesheet.isTemporary) {
+      return (
+        <div className="timesheet-cell__card-right">
+          <button className="btn btn-warning btn-xs">
+            <span className="glyphicon glyphicon-edit" />
+          </button>
+          <button className="btn btn-danger btn-xs">
+            <span className="glyphicon glyphicon-trash" />
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="timesheet-cell__card-right">
+          <button className="btn btn-danger btn-xs">
+            <span className="glyphicon glyphicon-trash" />
+          </button>
+        </div>
+      );
+    }
+  }
+
   renderMemo() {
     const { memo } = this.props.timesheet;
     if (memo !== undefined && memo.length > 0) {
@@ -25,8 +48,13 @@ class TimesheetCell extends Component<void, TimesheetCellProps, void> {
   }
 
   render() {
+    var className = 'timesheet-cell__card-container';
+    if (this.props.timesheet.isTemporary) {
+      className += ' timesheet-cell__card-container-temp';
+    }
+
     return (
-      <div className="timesheet-cell__card-container">
+      <div className={className}>
         <div className="timesheet-cell__card-left">
           <span className="label label-primary">
             {this.props.timesheet.start.format('HH:mm')}-{this.props.timesheet.end.format('HH:mm')}
@@ -41,14 +69,7 @@ class TimesheetCell extends Component<void, TimesheetCellProps, void> {
           </h5>
           {this.renderMemo()}
         </div>
-        <div className="timesheet-cell__card-right">
-          <button className="btn btn-warning btn-xs">
-            <span className="glyphicon glyphicon-edit" />
-          </button>
-          <button className="btn btn-danger btn-xs">
-            <span className="glyphicon glyphicon-trash" />
-          </button>
-        </div>
+        {this.renderFooter()}
       </div>
     );
   }
