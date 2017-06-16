@@ -1,7 +1,12 @@
+// @flow
+
 import type { CalendarAction } from './calendar';
+import type { TimesheetAction } from './timesheet';
+import type { UserAction } from './user';
 
 export type Action =
   | CalendarAction
+  | TimesheetAction
   | ThunkAction
   | PromiseAction
   | Array<CalendarAction>;
