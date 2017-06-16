@@ -80,7 +80,7 @@ class CalendarView extends Component<void, CalendarViewProps, void> {
           >
             <Glyphicon glyph="menu-right" />
           </Button>
-          <Dropdown id="bg-vertical-dropdown-1">
+          <Dropdown id="bg-vertical-dropdown-1" pullRight={true}>
             <Dropdown.Toggle bsStyle="success">
               <Glyphicon glyph="cog" />
             </Dropdown.Toggle>
@@ -197,6 +197,7 @@ class CalendarView extends Component<void, CalendarViewProps, void> {
           {this._renderCalendarBody()}
         </div>
         {this._renderFooterContainer()}
+        <hr />
       </div>
     );
   }
